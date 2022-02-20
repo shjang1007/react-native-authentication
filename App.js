@@ -18,14 +18,14 @@ import SignInScreen from './src/screens/SignInScreen';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.root}>
+    <SafeAreaView style={styles.container}>
       <SignInScreen/>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  root: {
+  container: {
     flext: 1,
   }
 });
