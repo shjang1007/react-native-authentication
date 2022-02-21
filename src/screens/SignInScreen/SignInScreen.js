@@ -7,8 +7,9 @@ import CustomInput from "../../components/CustomInput";
 
 const SignInScreen = () => {
     return(
-        <View style={ styles.container }>
+        <View style={styles.container}>
             <Logo/>
+            <CustomInput/>
             <CustomInput/>
         </View>
     )

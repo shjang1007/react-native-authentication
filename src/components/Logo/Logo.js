@@ -8,13 +8,13 @@ const Logo = () => {
     const { height } = useWindowDimensions();
 
     return(
-        <View style={ styles.container }>
+        <View style={styles.container}>
             <Image 
                 source={logo}
-                style={ styles.icon, {height: height * 0.2} }
+                style={styles.icon, {height: height * 0.2}}
                 resizeMode="contain"
             />
-            <Text style={ styles.title }>
+            <Text style={styles.title}>
                 Shoot for Ball
             </Text>
         </View>
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         alignItems: "center",
+        marginBottom: 50
     },
     icon: {
         width: "40%",
