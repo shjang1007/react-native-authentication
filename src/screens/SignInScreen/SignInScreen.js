@@ -16,7 +16,8 @@ const SignInScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center"
+        alignItems: "center",
+        padding: 20
     },
 })
 
