@@ -4,10 +4,15 @@ import { View, StyleSheet } from "react-native";
 // import Components
 import Logo from "../../components/Logo"
 import CustomInput from "../../components/CustomInput";
+import CustomButton from "../../components/CustomButton";
 
 const SignInScreen = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const onSignInPress = () => {
+        console.warn("Sign In Button Pressed");
+    }
 
     return(
         <View style={styles.container}>
@@ -22,6 +27,13 @@ const SignInScreen = () => {
                 text={password}
                 setText={setPassword}
                 secureTextEntry 
+            />
+            <CustomButton
+                text="Sign In"
+                onPress={onSignInPress}
+            />
+            <CustomButton
+                text="Forgot Password?"
             />
         </View>
     )

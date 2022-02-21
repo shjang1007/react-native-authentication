@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#D3D3D3",
         borderRadius: 5,
-        padding: 10,
+        padding: 15,
         marginVertical: 5
     },
     input: {
