@@ -14,6 +14,22 @@ const SignInScreen = () => {
         console.warn("Sign In Button Pressed");
     }
 
+    const onSignUpPress = () => {
+        console.warn("Dont have an account Button Pressed")
+    }
+
+    const onSignInEmailPress = () => {
+        console.warn("Sign In Email Button Pressed");
+    }
+
+    const onSignInGooglePress = () => {
+        console.warn("Sign In Google Button Pressed");
+    }
+
+    const onSignInApplePress = () => {
+        console.warn("Sign In Apple Button Pressed");
+    }
+
     const onForgotPasswordPress = () => {
         console.warn("Forgot Password? Button Pressed")
     }
@@ -40,19 +56,28 @@ const SignInScreen = () => {
             <CustomButton
                 text="Forgot Password?"
                 onPress={onForgotPasswordPress}
-                type="secondary"
+                type="tertiary"
             />
             <CustomButton
                 text="Sign In with Email"
-                onPress={onForgotPasswordPress}
+                onPress={onSignInEmailPress}
+                type="secondary"
             />
             <CustomButton
                 text="Sign In with Google"
-                onPress={onForgotPasswordPress}
+                onPress={onSignInGooglePress}
+                type="secondary"
+
             />
             <CustomButton
                 text="Continue with Apple"
-                onPress={onForgotPasswordPress}
+                onPress={onSignInApplePress}
+                type="secondary"
+            />
+            <CustomButton
+                text="Don't have an account?"
+                onPress={onSignUpPress}
+                type="tertiary"
             />
         </View>
     )
