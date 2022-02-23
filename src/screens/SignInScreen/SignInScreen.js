@@ -14,6 +14,10 @@ const SignInScreen = () => {
         console.warn("Sign In Button Pressed");
     }
 
+    const onForgotPasswordPress = () => {
+        console.warn("Forgot Password? Button Pressed")
+    }
+
     return(
         <View style={styles.container}>
             <Logo/>
@@ -34,6 +38,7 @@ const SignInScreen = () => {
             />
             <CustomButton
                 text="Forgot Password?"
+                onPress={onForgotPasswordPress}
             />
         </View>
     )
