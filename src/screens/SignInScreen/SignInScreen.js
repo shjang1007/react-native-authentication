@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 
 // import Components
 import Logo from "../../components/Logo"
@@ -35,51 +35,53 @@ const SignInScreen = () => {
     }
 
     return(
-        <View style={styles.container}>
-            <Logo/>
-            <CustomInput 
-                placeholderText="Username"
-                text={username}
-                setText={setUsername}    
-            />
-            <CustomInput 
-                placeholderText="Password"
-                text={password}
-                setText={setPassword}
-                secureTextEntry 
-            />
-            <CustomButton
-                text="Sign In"
-                onPress={onSignInPress}
-                type="primary"
-            />
-            <CustomButton
-                text="Forgot Password?"
-                onPress={onForgotPasswordPress}
-                type="tertiary"
-            />
-            <CustomButton
-                text="Sign In with Email"
-                onPress={onSignInEmailPress}
-                type="secondary"
-            />
-            <CustomButton
-                text="Sign In with Google"
-                onPress={onSignInGooglePress}
-                type="secondary"
+        <ScrollView>
+            <View style={styles.container}>
+                <Logo/>
+                <CustomInput 
+                    placeholderText="Username"
+                    text={username}
+                    setText={setUsername}    
+                />
+                <CustomInput 
+                    placeholderText="Password"
+                    text={password}
+                    setText={setPassword}
+                    secureTextEntry 
+                />
+                <CustomButton
+                    text="Sign In"
+                    onPress={onSignInPress}
+                    type="primary"
+                />
+                <CustomButton
+                    text="Forgot Password?"
+                    onPress={onForgotPasswordPress}
+                    type="tertiary"
+                />
+                <CustomButton
+                    text="Sign In with Email"
+                    onPress={onSignInEmailPress}
+                    type="secondary"
+                />
+                <CustomButton
+                    text="Sign In with Google"
+                    onPress={onSignInGooglePress}
+                    type="secondary"
 
-            />
-            <CustomButton
-                text="Continue with Apple"
-                onPress={onSignInApplePress}
-                type="secondary"
-            />
-            <CustomButton
-                text="Don't have an account?"
-                onPress={onSignUpPress}
-                type="tertiary"
-            />
-        </View>
+                />
+                <CustomButton
+                    text="Continue with Apple"
+                    onPress={onSignInApplePress}
+                    type="secondary"
+                />
+                <CustomButton
+                    text="Don't have an account?"
+                    onPress={onSignUpPress}
+                    type="tertiary"
+                />
+            </View>
+        </ScrollView>
     )
 }
 
