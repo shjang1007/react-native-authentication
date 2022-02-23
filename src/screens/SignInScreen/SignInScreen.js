@@ -35,9 +35,23 @@ const SignInScreen = () => {
             <CustomButton
                 text="Sign In"
                 onPress={onSignInPress}
+                type="primary"
             />
             <CustomButton
                 text="Forgot Password?"
+                onPress={onForgotPasswordPress}
+                type="secondary"
+            />
+            <CustomButton
+                text="Sign In with Email"
+                onPress={onForgotPasswordPress}
+            />
+            <CustomButton
+                text="Sign In with Google"
+                onPress={onForgotPasswordPress}
+            />
+            <CustomButton
+                text="Continue with Apple"
                 onPress={onForgotPasswordPress}
             />
         </View>
