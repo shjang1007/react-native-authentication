@@ -62,17 +62,20 @@ const SignInScreen = () => {
                 <CustomButton
                     text="Sign In with Email"
                     onPress={onSignInEmailPress}
+                    icon="mail"
                     type="secondary"
                 />
                 <CustomButton
                     text="Sign In with Google"
                     onPress={onSignInGooglePress}
+                    icon="google"
                     type="secondary"
 
                 />
                 <CustomButton
                     text="Continue with Apple"
                     onPress={onSignInApplePress}
+                    icon="apple"
                     type="secondary"
                 />
                 <CustomButton
