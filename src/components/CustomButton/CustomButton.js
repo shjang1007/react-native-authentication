@@ -17,7 +17,7 @@ const CustomButton = ({ onPress, text, type, icon }) => {
             style={[styles.container, styles[`${type}Container`]]}
             onPress={ onPress }
         >
-            { icon && <FontAwesomeIcon icon={icons[icon]} size={20}/>}
+            {icon && <FontAwesomeIcon icon={icons[icon]} size={ icon === "apple" ? 22 : 20}/>}
             <Text style={[styles.text, styles[`${type}Text`]]}>
               {text}
             </Text>
