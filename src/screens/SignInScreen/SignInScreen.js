@@ -7,7 +7,7 @@ import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const onSignInPress = () => {
@@ -39,12 +39,12 @@ const SignInScreen = () => {
             <View style={styles.container}>
                 <Logo/>
                 <CustomInput 
-                    placeholderText="Username"
-                    text={username}
-                    setText={setUsername}    
+                    placeholderText="Enter email address"
+                    text={email}
+                    setText={setEmail}    
                 />
                 <CustomInput 
-                    placeholderText="Password"
+                    placeholderText="Enter password"
                     text={password}
                     setText={setPassword}
                     secureTextEntry 
