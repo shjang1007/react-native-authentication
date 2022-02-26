@@ -5,6 +5,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import Logo from "../../components/Logo"
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
+import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 
 const SignInScreen = () => {
     const [email, setEmail] = useState("");
@@ -16,18 +17,6 @@ const SignInScreen = () => {
 
     const onSignUpPressed = () => {
         console.warn("Dont have an account Button Pressed")
-    }
-
-    const onSignInEmailPressed = () => {
-        console.warn("Sign In Email Button Pressed");
-    }
-
-    const onSignInGooglePressed = () => {
-        console.warn("Sign In Google Button Pressed");
-    }
-
-    const onSignInApplePressed = () => {
-        console.warn("Sign In Apple Button Pressed");
     }
 
     const onForgotPasswordPressed = () => {
@@ -59,25 +48,7 @@ const SignInScreen = () => {
                     onPress={onForgotPasswordPressed}
                     type="tertiary"
                 />
-                <CustomButton
-                    text="Sign In with Email"
-                    onPress={onSignInEmailPressed}
-                    icon="mail"
-                    type="secondary"
-                />
-                <CustomButton
-                    text="Sign In with Google"
-                    onPress={onSignInGooglePressed}
-                    icon="google"
-                    type="secondary"
-
-                />
-                <CustomButton
-                    text="Continue with Apple"
-                    onPress={onSignInApplePressed}
-                    icon="apple"
-                    type="secondary"
-                />
+                <OAuthSignInButtons/>
                 <CustomButton
                     text="Don't have an account?"
                     onPress={onSignUpPressed}
