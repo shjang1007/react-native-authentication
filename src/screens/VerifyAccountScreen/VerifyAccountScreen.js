@@ -63,13 +63,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         color: "#5B5B5B"
     },
-    disclaimer: {
-        fontWeight: "300",
-        fontSize: 12 ,
-        alignSelf: "flex-start",
-        marginVertical: 10
-    },
-
     textLink: {
         color: "red",
         textDecorationLine: "underline"
