@@ -18,14 +18,14 @@ const OAuthSignInButtons = () => {
                 text="Sign In with Google"
                 onPress={onSignInGooglePressed}
                 icon="google"
-                type="secondary"
+                type="oAuth"
 
             />
             <CustomButton
                 text="Continue with Apple"
                 onPress={onSignInApplePressed}
                 icon="apple"
-                type="secondary"
+                type="oAuth"
             />
         </>
     )

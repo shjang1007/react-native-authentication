@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#197AD8",
     },
     secondaryContainer: {
+        borderColor: "#197AD8",
+        borderWidth: 1
+    },
+    oAuthContainer: {
         borderWidth: 0.7,
         flexDirection: "row",
     },
@@ -50,6 +54,9 @@ const styles = StyleSheet.create({
         color: "white",
     },
     secondaryText: {
+        color: "#197AD8"
+    },
+    oAuthText: {
         fontWeight: "600",
         textAlign: "center",
         flex: 2
