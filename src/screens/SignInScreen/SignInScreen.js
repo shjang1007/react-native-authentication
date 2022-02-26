@@ -10,27 +10,27 @@ const SignInScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const onSignInPress = () => {
+    const onSignInPressed = () => {
         console.warn("Sign In Button Pressed");
     }
 
-    const onSignUpPress = () => {
+    const onSignUpPressed = () => {
         console.warn("Dont have an account Button Pressed")
     }
 
-    const onSignInEmailPress = () => {
+    const onSignInEmailPressed = () => {
         console.warn("Sign In Email Button Pressed");
     }
 
-    const onSignInGooglePress = () => {
+    const onSignInGooglePressed = () => {
         console.warn("Sign In Google Button Pressed");
     }
 
-    const onSignInApplePress = () => {
+    const onSignInApplePressed = () => {
         console.warn("Sign In Apple Button Pressed");
     }
 
-    const onForgotPasswordPress = () => {
+    const onForgotPasswordPressed = () => {
         console.warn("Forgot Password? Button Pressed")
     }
 
@@ -51,36 +51,36 @@ const SignInScreen = () => {
                 />
                 <CustomButton
                     text="Sign In"
-                    onPress={onSignInPress}
+                    onPress={onSignInPressed}
                     type="primary"
                 />
                 <CustomButton
                     text="Forgot Password?"
-                    onPress={onForgotPasswordPress}
+                    onPress={onForgotPasswordPressed}
                     type="tertiary"
                 />
                 <CustomButton
                     text="Sign In with Email"
-                    onPress={onSignInEmailPress}
+                    onPress={onSignInEmailPressed}
                     icon="mail"
                     type="secondary"
                 />
                 <CustomButton
                     text="Sign In with Google"
-                    onPress={onSignInGooglePress}
+                    onPress={onSignInGooglePressed}
                     icon="google"
                     type="secondary"
 
                 />
                 <CustomButton
                     text="Continue with Apple"
-                    onPress={onSignInApplePress}
+                    onPress={onSignInApplePressed}
                     icon="apple"
                     type="secondary"
                 />
                 <CustomButton
                     text="Don't have an account?"
-                    onPress={onSignUpPress}
+                    onPress={onSignUpPressed}
                     type="tertiary"
                 />
             </View>
