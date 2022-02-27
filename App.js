@@ -6,27 +6,26 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
-} from 'react-native';
+} from "react-native";
 
 // import Components
-import SignInScreen from './src/screens/SignInScreen';
+import Navigation from "./src/navigation";
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <SignInScreen/>
+      <Navigation/>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flext: 1,
+    flex: 1,
   }
 });
 
