@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // import Components
 import Logo from "../../components/Logo"
@@ -11,16 +12,23 @@ const SignInScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // set up navigation
+    const navigation = useNavigation();
+
     const onSignInPressed = () => {
-        console.warn("Sign In Button Pressed");
+        // authenticate a use and if correct credentials are provided
+        // redirect to home screen
+        navigation.navigate("Home");
     }
 
     const onSignUpPressed = () => {
-        console.warn("Dont have an account Button Pressed")
+        //redirect to sign up screen
+        navigation.navigate("SignUp")
     }
 
     const onForgotPasswordPressed = () => {
-        console.warn("Forgot Password? Button Pressed")
+        // redirect to forgot password screen
+        navigation.navigate("ForgotPassword")
     }
 
     return(

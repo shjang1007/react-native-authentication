@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
@@ -11,14 +12,19 @@ const SignUpScreen = () => {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    // set up navigation
+    const navigation = useNavigation();
     
 
     const onRegisterPressed = () => {
-        console.warn("Sign Up Button Pressed");
+        // create a new user and redirect to verify account
+        navigation.navigate("VerifyAccount");
     }
 
     const onSignInPressed = () => {
-        console.warn("Have an account? Sign In Button Pressed")
+        // redirect to sign in screen
+        navigation.navigate("SignIn");
     }
 
     const onTermConditionPressed = () => {

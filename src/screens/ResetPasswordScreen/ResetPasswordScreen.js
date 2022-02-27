@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
@@ -9,12 +10,17 @@ const ResetPasswordScreen = () => {
     const [verificationCode, setVerificationCode] = useState("");    
     const [password, setPassword] = useState("");    
 
+    // set up navigation
+    const navigation = useNavigation();
+
     const onSubmitPressed = () => {
-        console.warn("Submit Button Pressed");
+        // reset password and then redirect the user to sign in screen
+        navigation.navigate("SignIn");
     }
 
     const onSignInPressed = () => {
-        console.warn("Back to Sign In Button Pressed")
+        // redirect the user to sign in screen
+        navigation.navigate("SignIn");
     }
 
     return(

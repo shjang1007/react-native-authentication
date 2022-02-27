@@ -1,19 +1,25 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
 const VerifyAccountScreen = () => {
-    const [verificationCode, setVerificationCode] = useState("");    
+    const [verificationCode, setVerificationCode] = useState("");   
+    
+    // set up navigation
+    const navigation = useNavigation();
 
     const onConfirmVerficationCodePressed = () => {
-        console.warn("Confirm Verification Code Pressed");
+        // if verified with correct code, redirect to Home Screen
+        navigation.navigate("Home");
     }
 
     const onSignInPressed = () => {
-        console.warn("Have an account? Sign In Button Pressed")
+        // redirect to sign in screen
+        navigation.navigate("SignIn");
     }
 
     const onResendCodePressed = () => {
