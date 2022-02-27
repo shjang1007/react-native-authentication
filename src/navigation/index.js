@@ -15,8 +15,13 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
     return(
-        <NavigationContainer style={{flex: 1}}>
-            <Stack.Navigator screenOptions={{headerShown: false}}>
+        <NavigationContainer>
+            <Stack.Navigator 
+                screenOptions={{
+                    headerShown: false,
+                    contentStyle: {backgroundColor: "white"}
+                }} 
+            >
                 <Stack.Screen name="SignIn" component={SignInScreen} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="VerifyAccount" component={VerifyAccountScreen} />
