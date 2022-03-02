@@ -12,8 +12,14 @@ import {
   StyleSheet,
 } from "react-native";
 
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "./src/aws-exports";
+
 // import Components
 import Navigation from "./src/navigation";
+
+// configure AWS Amplify
+Amplify.configure(awsconfig);
 
 const App = () => {
   return (
