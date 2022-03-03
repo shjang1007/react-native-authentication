@@ -1,6 +1,8 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Auth } from "aws-amplify";
+import { useForm } from "react-hook-form";
 
 // import Components
 import Logo from "../../components/Logo"
@@ -12,13 +14,19 @@ const SignInScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const { control, handleSubmit } = useForm();
+
     // set up navigation
     const navigation = useNavigation();
 
-    const onSignInPressed = () => {
+    const onSignInPressed = (data) => {
+        const response = data;
+        console.log(data);
+        // const response = await Auth.SignIn(data.username, data.password);
+        // console.log(Auth.signIn(data));
         // authenticate a use and if correct credentials are provided
         // redirect to home screen
-        navigation.navigate("Home");
+        // navigation.navigate("Home");
     }
 
     const onSignUpPressed = () => {
@@ -35,20 +43,21 @@ const SignInScreen = () => {
         <ScrollView>
             <View style={styles.container}>
                 <Logo/>
+
                 <CustomInput 
                     placeholderText="Enter email address"
-                    text={email}
-                    setText={setEmail}    
+                    name="email"
+                    control={ control }  
                 />
                 <CustomInput 
                     placeholderText="Enter password"
-                    text={password}
-                    setText={setPassword}
-                    secureTextEntry 
+                    name="password"
+                    control={ control } 
                 />
+
                 <CustomButton
                     text="Sign In"
-                    onPress={onSignInPressed}
+                    onPress={handleSubmit(onSignInPressed)}
                     type="primary"
                 />
                 <CustomButton
@@ -56,7 +65,9 @@ const SignInScreen = () => {
                     onPress={onForgotPasswordPressed}
                     type="tertiary"
                 />
+
                 <OAuthSignInButtons/>
+
                 <CustomButton
                     text="Don't have an account?"
                     onPress={onSignUpPressed}
