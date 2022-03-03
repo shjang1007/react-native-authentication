@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
@@ -8,18 +9,15 @@ import CustomButton from "../../components/CustomButton";
 import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 
 const SignUpScreen = () => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { control, handleSubmit } = useForm();
 
     // set up navigation
     const navigation = useNavigation();
     
 
-    const onRegisterPressed = () => {
+    const onRegisterPressed = (data) => {
         // create a new user and redirect to verify account
-        navigation.navigate("VerifyAccount");
+        // navigation.navigate("VerifyAccount");
     }
 
     const onSignInPressed = () => {
@@ -42,32 +40,62 @@ const SignUpScreen = () => {
 
                 <CustomInput 
                     placeholderText="Enter first name"
-                    text={firstName}
-                    setText={setFirstName}    
+                    name="firstName"
+                    control={control}
+                    rules={{ 
+                        required: "First name is required", 
+                        pattern: {
+                            value: /^[A-Za-z\s]*$/,
+                            message: "Only letters are allowed in this field"
+                        }
+                    }}
                 />
-
                 <CustomInput 
                     placeholderText="Enter last name"
-                    text={lastName}
-                    setText={setLastName}    
+                    name="lastName"
+                    control={control} 
+                    rules={{ 
+                        required: "Last name is required",
+                        pattern: {
+                            value: /^[A-Za-z\s]*$/,
+                            message: "Only letters are allowed in this field"
+                        } 
+                    }}
                 />
-
                 <CustomInput 
                     placeholderText="Enter email address"
-                    text={email}
-                    setText={setEmail}    
+                    name="email"
+                    control={control} 
+                    rules={{ 
+                        required: "Email is required",
+                        pattern: {
+                            value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            message: "Must be valid email format"
+                        }
+                    }} 
                 />
-
                 <CustomInput 
                     placeholderText="Enter password"
-                    text={password}
-                    setText={setPassword}
+                    name="password"
+                    control={control}
                     secureTextEntry 
+                    rules={{ 
+                        required: "Password is required",
+                        minLength: {
+                            value: 8,
+                            message: "Password must be at least 8 characters"
+                        },
+                        pattern: {
+                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/,
+                            message: "Password must contain at least one lower case letter, one upper case letter, a number, and one special character"
+                        }
+                
+                    }}
                 />
 
                 <CustomButton
                     text="Sign Up"
-                    onPress={onRegisterPressed}
+                    onPress={handleSubmit(onRegisterPressed)}
                     type="primary"
                 />
 

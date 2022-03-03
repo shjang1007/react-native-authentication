@@ -42,13 +42,13 @@ const SignInScreen = () => {
                     placeholderText="Enter email address"
                     name="email"
                     control={ control }
-                    rules={{ required: "email address is required" }}  
+                    rules={{ required: "Email address is required" }}  
                 />
                 <CustomInput 
                     placeholderText="Enter password"
                     name="password"
                     control={ control } 
-                    rules={{ required: "password is required" }}
+                    rules={{ required: "Password is required" }}
                 />
 
                 <CustomButton
