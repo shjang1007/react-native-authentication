@@ -14,19 +14,13 @@ const SignInScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, formState: {errors} } = useForm();
 
     // set up navigation
     const navigation = useNavigation();
 
     const onSignInPressed = (data) => {
         const response = data;
-        console.log(data);
-        // const response = await Auth.SignIn(data.username, data.password);
-        // console.log(Auth.signIn(data));
-        // authenticate a use and if correct credentials are provided
-        // redirect to home screen
-        // navigation.navigate("Home");
     }
 
     const onSignUpPressed = () => {
@@ -47,12 +41,14 @@ const SignInScreen = () => {
                 <CustomInput 
                     placeholderText="Enter email address"
                     name="email"
-                    control={ control }  
+                    control={ control }
+                    rules={{ required: "email address is required" }}  
                 />
                 <CustomInput 
                     placeholderText="Enter password"
                     name="password"
                     control={ control } 
+                    rules={{ required: "password is required" }}
                 />
 
                 <CustomButton

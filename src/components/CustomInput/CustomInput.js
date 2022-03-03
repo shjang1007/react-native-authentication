@@ -1,28 +1,33 @@
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 import { Controller } from "react-hook-form";
 
-const CustomInput = ({name, control, placeholderText, secureTextEntry}) => {
+const CustomInput = ({name, control, rules={}, placeholderText, secureTextEntry}) => {
     return(
-        <View style={ styles.container }>
-            <Controller
-                control={ control }
-                name={ name }
-                render={({field: {value, onChange, onBlur}})=> {
-                    return(
-                        <TextInput 
-                            value={value}
-                            onChangeText={onChange}
-                            placeholder={placeholderText}
-                            style={styles.input}
-                            secureTextEntry={secureTextEntry}
-                            autoCapitalize="none"
-                        />
-                    )
-                }}
+        <Controller
+            control={ control }
+            name={ name }
+            rules={rules}
+            render={({field: {value, onChange, onBlur}, fieldState: {error}})=> {
+                return(
+                    <>
+                        <View style={ styles.container }>
+                            <TextInput 
+                                value={value}
+                                onChangeText={onChange}                           
+                                placeholder={placeholderText}
+                                style={styles.input}
+                                secureTextEntry={secureTextEntry}
+                                autoCapitalize="none"
+                            />
+                        </View>
+                        { error && <Text style={styles.errorMessage}>{error.message}</Text>}
+                    </>
 
-            />
-        </View>
+                )
+            }}
+
+        /> 
     )
 }
 
@@ -38,6 +43,12 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 15,
         fontWeight: "500"
+    },
+    errorMessage: {
+        alignSelf: "stretch",
+        color: "red",
+        fontWeight: "300",
+        marginLeft: 5
     }
 });
 
