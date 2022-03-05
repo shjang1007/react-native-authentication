@@ -14,8 +14,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Forgot password code for Shoot for Ball",
-    "emailVerificationMessage": "Hi,\n\nHere's your forgot password code: {####}\nPlease enter this code to reset your password.\n\nThank you,\nTeam Shoot for Ball",
+    "emailVerificationSubject": "Verification Code from Shoot for Ball",
+    "emailVerificationMessage": "Hi,\n\nHere's your Verification Code: {####}\nPlease enter this code to verify your account.\n\nThank you,\nTeam Shoot for Ball",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -64,6 +64,7 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": []
+    "dependsOn": [],
+    "hostedUI": false
   }
 }
