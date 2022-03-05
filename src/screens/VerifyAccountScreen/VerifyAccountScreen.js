@@ -1,18 +1,19 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
 const VerifyAccountScreen = () => {
-    const [verificationCode, setVerificationCode] = useState("");   
-    
+    const { control, handleSubmit } = useForm();
+
     // set up navigation
     const navigation = useNavigation();
 
-    const onConfirmVerficationCodePressed = () => {
+    const onConfirmVerficationCodePressed = (data) => {
         // if verified with correct code, redirect to Home Screen
         navigation.navigate("Home");
     }
@@ -32,13 +33,16 @@ const VerifyAccountScreen = () => {
 
                 <CustomInput 
                     placeholderText="Enter verification code"
-                    text={verificationCode}
-                    setText={setVerificationCode}    
+                    name="verificationCode"
+                    control={ control }
+                    rules={{
+                        required: "Verification Code is required",
+                    }} 
                 />
 
                 <CustomButton
                     text="Confirm"
-                    onPress={onConfirmVerficationCodePressed}
+                    onPress={handleSubmit(onConfirmVerficationCodePressed)}
                     type="primary"
                 />
 

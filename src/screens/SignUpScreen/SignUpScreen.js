@@ -11,6 +11,7 @@ import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 // Regex Constants
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const NAME_REGEX = /^[A-Za-z\s]*$/
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/
 
 const SignUpScreen = () => {
     const { control, handleSubmit } = useForm();
@@ -21,7 +22,7 @@ const SignUpScreen = () => {
 
     const onRegisterPressed = (data) => {
         // create a new user and redirect to verify account
-        // navigation.navigate("VerifyAccount");
+        navigation.navigate("VerifyAccount");
     }
 
     const onSignInPressed = () => {
@@ -90,7 +91,7 @@ const SignUpScreen = () => {
                             message: "Password must be at least 8 characters"
                         },
                         pattern: {
-                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/,
+                            value: PASSWORD_REGEX,
                             message: "Password must contain at least one lower case letter, one upper case letter, a number, and one special character"
                         }
                 

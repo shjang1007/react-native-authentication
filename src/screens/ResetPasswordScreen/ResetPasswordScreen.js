@@ -1,19 +1,22 @@
 import React, {useState} from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
+// Regex Constant
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/
+
 const ResetPasswordScreen = () => {
-    const [verificationCode, setVerificationCode] = useState("");    
-    const [password, setPassword] = useState("");    
+    const { control, handleSubmit } = useForm();
 
     // set up navigation
     const navigation = useNavigation();
 
-    const onSubmitPressed = () => {
+    const onSubmitPressed = (data) => {
         // reset password and then redirect the user to sign in screen
         navigation.navigate("SignIn");
     }
@@ -30,20 +33,30 @@ const ResetPasswordScreen = () => {
 
                 <CustomInput 
                     placeholderText="Enter verification code"
-                    text={verificationCode}
-                    setText={setVerificationCode}    
+                    name="verificationCode"
+                    control={control}
+                    rules={{
+                        required: "Verfication Code is required"
+                    }} 
                 />
 
                 <CustomInput 
                     placeholderText="Enter password"
-                    text={password}
-                    setText={setPassword}
-                    secureTextEntry 
+                    name="password"
+                    control={control}
+                    secureTextEntry
+                    rules={{
+                        required: "Password is required",
+                        pattern: {
+                            value: PASSWORD_REGEX,
+                            message: "Password must contain at least one lower case letter, one upper case letter, a number, and one special character"
+                        }
+                    }} 
                 />
 
                 <CustomButton
                     text="Submit"
-                    onPress={onSubmitPressed}
+                    onPress={handleSubmit(onSubmitPressed)}
                     type="primary"
                 />
 
