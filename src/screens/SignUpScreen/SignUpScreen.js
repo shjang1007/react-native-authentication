@@ -8,6 +8,10 @@ import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 
+// Regex Constants
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const NAME_REGEX = /^[A-Za-z\s]*$/
+
 const SignUpScreen = () => {
     const { control, handleSubmit } = useForm();
 
@@ -45,7 +49,7 @@ const SignUpScreen = () => {
                     rules={{ 
                         required: "First name is required", 
                         pattern: {
-                            value: /^[A-Za-z\s]*$/,
+                            value: NAME_REGEX,
                             message: "Only letters are allowed in this field"
                         }
                     }}
@@ -57,7 +61,7 @@ const SignUpScreen = () => {
                     rules={{ 
                         required: "Last name is required",
                         pattern: {
-                            value: /^[A-Za-z\s]*$/,
+                            value: NAME_REGEX,
                             message: "Only letters are allowed in this field"
                         } 
                     }}
@@ -69,7 +73,7 @@ const SignUpScreen = () => {
                     rules={{ 
                         required: "Email is required",
                         pattern: {
-                            value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            value: EMAIL_REGEX,
                             message: "Must be valid email format"
                         }
                     }} 
