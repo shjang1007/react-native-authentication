@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { View, StyleSheet, ScrollView, Text, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import OAuthSignInButtons from "../../components/OAuthSignInButtons";
+import { Auth } from "aws-amplify";
 
 // Regex Constants
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -20,7 +21,22 @@ const SignUpScreen = () => {
     const navigation = useNavigation();
     
 
-    const onRegisterPressed = (data) => {
+    const onRegisterPressed = async (data) => {
+        const { email, password, firstName, lastName } = data;
+
+        try {
+            const response = await Auth.signUp({
+                username: email,
+                password,
+                attributes: {
+                    given_name: firstName,
+                    family_name: lastName,
+                    email
+                }
+            });
+        } catch (e) {
+            Alert.alert("Invalid", e.message)
+        }
         // create a new user and redirect to verify account
         navigation.navigate("VerifyAccount");
     }

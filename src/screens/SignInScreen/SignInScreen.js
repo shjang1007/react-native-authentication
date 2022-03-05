@@ -11,16 +11,20 @@ import CustomButton from "../../components/CustomButton";
 import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 
 const SignInScreen = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
     const { control, handleSubmit, formState: {errors} } = useForm();
 
     // set up navigation
     const navigation = useNavigation();
 
-    const onSignInPressed = (data) => {
-        const response = data;
+    const onSignInPressed = async (data) => {
+        const { email, password } = data;
+
+        try {
+            const response = await Auth.signIn(email, password);
+            navigation.navigate("Home");
+        } catch (e) {
+            Alert.alert("Failed to Sign in", e.message)
+        }
     }
 
     const onSignUpPressed = () => {
@@ -47,6 +51,7 @@ const SignInScreen = () => {
                 <CustomInput 
                     placeholderText="Enter password"
                     name="password"
+                    secureTextEntry={true}
                     control={ control } 
                     rules={{ required: "Password is required" }}
                 />
