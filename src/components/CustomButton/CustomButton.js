@@ -5,7 +5,7 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faGoogle, faApple } from "@fortawesome/free-brands-svg-icons";
 
 
-const CustomButton = ({ onPress, text, type, icon }) => {
+const CustomButton = ({ onPress, text, type, icon, loading }) => {
     const icons = {
         mail: faEnvelope,
         google: faGoogle,
@@ -14,7 +14,7 @@ const CustomButton = ({ onPress, text, type, icon }) => {
 
     return(
         <Pressable 
-            style={[styles.container, styles[`${type}Container`]]}
+            style={[styles.container, styles[`${type}Container`], loading && styles.loading]}
             onPress={ onPress }
         >
             {icon && <FontAwesomeIcon icon={icons[icon]} size={ icon === "apple" ? 22 : 20}/>}
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 5,
         marginVertical: 5,
-        alignItems: "center"
+        alignItems: "center",
     },
     primaryContainer: {
         backgroundColor: "#197AD8",
@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
     },
     tertiaryText: {
         fontWeight: "300"
+    },
+    loading: {
+        opacity: 0.5
     }
 });
 
