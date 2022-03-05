@@ -27,7 +27,7 @@ const VerifyAccountScreen = () => {
         
         try {
             const code = data.verificationCode;
-            
+
             const response = await Auth.confirmSignUp(email, code);
 
             // if verified with correct code, redirect to Home Screen
@@ -44,8 +44,14 @@ const VerifyAccountScreen = () => {
         navigation.navigate("SignIn");
     }
 
-    const onResendCodePressed = () => {
-        console.warn("Resend Code Pressed")
+    const onResendCodePressed = async () => {
+        try {
+            await Auth.resendSignUp(email);
+
+            Alert.alert("Code Sent", "Please check your email")
+        } catch (e) {
+            Alert.alert("Invalid", e.message)
+        }
     }
     return(
         <ScrollView>
