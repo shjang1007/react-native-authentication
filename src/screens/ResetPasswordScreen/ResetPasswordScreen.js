@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, StyleSheet, ScrollView, Text, Alert } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
+import { Auth } from "aws-amplify";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
@@ -11,14 +12,35 @@ import CustomButton from "../../components/CustomButton";
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/
 
 const ResetPasswordScreen = () => {
-    const { control, handleSubmit } = useForm();
+    const [loading, setLoading] = useState(false);
+
+    const { control, handleSubmit, watch } = useForm();
+
+    const route = useRoute();
 
     // set up navigation
     const navigation = useNavigation();
 
-    const onSubmitPressed = (data) => {
-        // reset password and then redirect the user to sign in screen
-        navigation.navigate("SignIn");
+    const onSubmitPressed = async (data) => {
+        if (loading) {
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const { verificationCode, password } = data;
+            const email = route.params.email
+
+            const response = Auth.forgotPasswordSubmit(email, verificationCode, password)
+
+            // reset password and then redirect the user to sign in screen
+            navigation.navigate("SignIn");
+        } catch (e) {
+            Alert.alert("Invalid", e.message);
+        }
+
+        setLoading(false);
     }
 
     const onSignInPressed = () => {
@@ -41,7 +63,7 @@ const ResetPasswordScreen = () => {
                 />
 
                 <CustomInput 
-                    placeholderText="Enter password"
+                    placeholderText="Enter new password"
                     name="password"
                     control={control}
                     secureTextEntry
@@ -58,6 +80,7 @@ const ResetPasswordScreen = () => {
                     text="Submit"
                     onPress={handleSubmit(onSubmitPressed)}
                     type="primary"
+                    loading={loading}
                 />
 
                 <CustomButton

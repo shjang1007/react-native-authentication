@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { View, StyleSheet, ScrollView, Text, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
+import { Auth } from "aws-amplify";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
@@ -11,14 +12,31 @@ import CustomButton from "../../components/CustomButton";
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const ForgotPasswordScereen = () => {
+    const [loading, setLoading] = useState(false);
+
     const { control, handleSubmit } = useForm();
     
     // set up navigation
     const navigation = useNavigation();
 
-    const onSendPressed = (data) => {
-        // send verification code to email and redirect to reset password screen
-        navigation.navigate("ResetPassword");
+    const onSendPressed = async (data) => {
+        if (loading) {
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const email = data.email;
+
+            const response = await Auth.forgotPassword(email)
+             // send verification code to email and redirect to reset password screen
+            navigation.navigate("ResetPassword", {email});
+        } catch (e) {
+            Alert.alert("Invalid", e.message)
+        }
+
+       setLoading(false);
     }
 
     const onSignInPressed = () => {
@@ -48,6 +66,7 @@ const ForgotPasswordScereen = () => {
                     text="Send"
                     onPress={handleSubmit(onSendPressed)}
                     type="primary"
+                    loading={loading}
                 />
 
                 <CustomButton

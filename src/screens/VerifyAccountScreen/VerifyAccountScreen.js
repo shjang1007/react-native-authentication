@@ -16,7 +16,6 @@ const VerifyAccountScreen = () => {
     // set up navigation
     const navigation = useNavigation();
     const route = useRoute();
-    const email = route.params.email;
 
     const onConfirmVerficationCodePressed = async (data) => {
         if (loading) {
@@ -26,6 +25,7 @@ const VerifyAccountScreen = () => {
         setLoading(true);
         
         try {
+            const email = route.params.email;
             const code = data.verificationCode;
 
             const response = await Auth.confirmSignUp(email, code);
