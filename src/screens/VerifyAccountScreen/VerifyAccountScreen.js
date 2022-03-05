@@ -1,21 +1,42 @@
 import React, {useState} from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, Alert, View, ScrollView, Text } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
+import { Auth } from "aws-amplify";
 
 // import Components
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 
 const VerifyAccountScreen = () => {
+    const [loading, setLoading] = useState(false);
+
     const { control, handleSubmit } = useForm();
 
     // set up navigation
     const navigation = useNavigation();
+    const route = useRoute();
+    const email = route.params.email;
 
-    const onConfirmVerficationCodePressed = (data) => {
-        // if verified with correct code, redirect to Home Screen
-        navigation.navigate("Home");
+    const onConfirmVerficationCodePressed = async (data) => {
+        if (loading) {
+            return;
+        }
+        
+        setLoading(true);
+        
+        try {
+            const code = data.verificationCode;
+            
+            const response = await Auth.confirmSignUp(email, code);
+
+            // if verified with correct code, redirect to Home Screen
+            navigation.navigate("Home");
+        } catch (e) {
+            Alert.alert("Invalid", e.message)
+        }
+
+        setLoading(false);
     }
 
     const onSignInPressed = () => {
@@ -29,7 +50,7 @@ const VerifyAccountScreen = () => {
     return(
         <ScrollView>
             <View style={styles.container}>
-                <Text style={styles.title}>Verify our Account</Text>
+                <Text style={styles.title}>Verify your Account</Text>
 
                 <CustomInput 
                     placeholderText="Enter verification code"
@@ -44,6 +65,7 @@ const VerifyAccountScreen = () => {
                     text="Confirm"
                     onPress={handleSubmit(onConfirmVerficationCodePressed)}
                     type="primary"
+                    loading={loading}
                 />
 
                 <CustomButton 

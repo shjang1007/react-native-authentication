@@ -15,6 +15,7 @@ const NAME_REGEX = /^[A-Za-z\s]*$/
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/
 
 const SignUpScreen = () => {
+    const [loading, setLoading] = useState(false);
     const { control, handleSubmit } = useForm();
 
     // set up navigation
@@ -23,6 +24,12 @@ const SignUpScreen = () => {
 
     const onRegisterPressed = async (data) => {
         const { email, password, firstName, lastName } = data;
+
+        if (loading) {
+            return;
+        }
+
+        setLoading(true);
 
         try {
             const response = await Auth.signUp({
@@ -34,11 +41,16 @@ const SignUpScreen = () => {
                     email
                 }
             });
+
+            // create a new user and redirect to verify account
+             navigation.navigate("VerifyAccount", { email });
         } catch (e) {
             Alert.alert("Invalid", e.message)
         }
-        // create a new user and redirect to verify account
-        navigation.navigate("VerifyAccount");
+
+        setLoading(false);
+
+        
     }
 
     const onSignInPressed = () => {
@@ -118,6 +130,7 @@ const SignUpScreen = () => {
                     text="Sign Up"
                     onPress={handleSubmit(onRegisterPressed)}
                     type="primary"
+                    loading={loading}
                 />
 
                 <Text style={styles.disclaimer}>

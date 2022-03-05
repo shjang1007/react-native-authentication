@@ -11,6 +11,8 @@ import CustomButton from "../../components/CustomButton";
 import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 
 const SignInScreen = () => {
+    const [loading, setLoading] = useState(false);
+
     const { control, handleSubmit, formState: {errors} } = useForm();
 
     // set up navigation
@@ -19,12 +21,20 @@ const SignInScreen = () => {
     const onSignInPressed = async (data) => {
         const { email, password } = data;
 
+        if (loading) {
+            return;
+        }
+
+        setLoading(true);
+
         try {
             const response = await Auth.signIn(email, password);
             navigation.navigate("Home");
         } catch (e) {
             Alert.alert("Failed to Sign in", e.message)
         }
+
+        setLoading(false);
     }
 
     const onSignUpPressed = () => {
@@ -60,6 +70,7 @@ const SignInScreen = () => {
                     text="Sign In"
                     onPress={handleSubmit(onSignInPressed)}
                     type="primary"
+                    loading={loading}
                 />
                 <CustomButton
                     text="Forgot Password?"
