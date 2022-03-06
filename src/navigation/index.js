@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Auth } from "aws-amplify";
+import { Auth, Hub } from "aws-amplify";
 
 // import Components
 import SignInScreen from "../screens/SignInScreen";
@@ -21,7 +21,19 @@ const Navigation = () => {
     useEffect(() => {
         checkUserSignedIn();
     }, [])
+    
+    useEffect(() => {
+        const listener = (data) => {
+            const event = data.payload.event;
 
+            if (event === "signIn" || event === "signOut") {
+                checkUserSignedIn();
+            }
+        }
+
+        Hub.listen("auth", listener);
+        return () => Hub.remove("auth", listener);
+    }, [])
     const checkUserSignedIn = async () => {
         try {
             const authenticatedUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
@@ -51,7 +63,9 @@ const Navigation = () => {
             >
                 {
                     isSignedIn ? (
-                        <Stack.Screen name="Home" component={HomeScreen} />
+                        <>
+                            <Stack.Screen name="Home" component={HomeScreen} />
+                        </>
                     ) : (
                         <>
                             <Stack.Screen name="SignIn" component={SignInScreen} />
