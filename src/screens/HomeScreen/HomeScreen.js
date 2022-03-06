@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import { Auth } from "aws-amplify";
 
 const Home = () => {
     return(
@@ -22,6 +23,10 @@ const Home = () => {
                         </Text>
                     </View>
                 </View>
+                
+                <Pressable onPress={() => Auth.signOut()}>
+                    <Text>Sign Out</Text>    
+                </Pressable>
             </ScrollView>
         </View>
     )

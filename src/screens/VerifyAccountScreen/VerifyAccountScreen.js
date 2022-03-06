@@ -14,7 +14,6 @@ const VerifyAccountScreen = () => {
     const { control, handleSubmit } = useForm();
 
     // set up navigation
-    const navigation = useNavigation();
     const route = useRoute();
 
     const onConfirmVerficationCodePressed = async (data) => {
@@ -29,9 +28,6 @@ const VerifyAccountScreen = () => {
             const code = data.verificationCode;
 
             const response = await Auth.confirmSignUp(email, code);
-
-            // if verified with correct code, redirect to Home Screen
-            navigation.navigate("Home");
         } catch (e) {
             Alert.alert("Invalid", e.message)
         }

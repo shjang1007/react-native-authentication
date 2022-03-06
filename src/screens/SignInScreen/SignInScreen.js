@@ -15,9 +15,6 @@ const SignInScreen = () => {
 
     const { control, handleSubmit, formState: {errors} } = useForm();
 
-    // set up navigation
-    const navigation = useNavigation();
-
     const onSignInPressed = async (data) => {
         const { email, password } = data;
 
@@ -29,7 +26,6 @@ const SignInScreen = () => {
 
         try {
             const response = await Auth.signIn(email, password);
-            navigation.navigate("Home");
         } catch (e) {
             Alert.alert("Failed to Sign in", e.message)
         }
