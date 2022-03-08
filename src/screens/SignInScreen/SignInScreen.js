@@ -15,6 +15,9 @@ const SignInScreen = () => {
 
     const { control, handleSubmit, formState: {errors} } = useForm();
 
+    // set up navigation
+    const navigation = useNavigation();
+
     const onSignInPressed = async (data) => {
         const { email, password } = data;
 

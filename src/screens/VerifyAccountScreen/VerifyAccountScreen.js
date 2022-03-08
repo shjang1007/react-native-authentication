@@ -15,6 +15,7 @@ const VerifyAccountScreen = () => {
 
     // set up navigation
     const route = useRoute();
+    const navigation = useNavigation();
 
     const onConfirmVerficationCodePressed = async (data) => {
         if (loading) {
