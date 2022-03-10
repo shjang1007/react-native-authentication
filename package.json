@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "npx react-native run-ios",
+    "ios": "npx react-native run-ios --simulator=\"iPhone 13 Pro\"",
     "start": "npx react-native start",
     "test": "jest",
     "lint": "eslint ."

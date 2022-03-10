@@ -104,7 +104,6 @@
 				20E9FC63116159907FC99060 /* Pods-Authentication-AuthenticationTests.debug.xcconfig */,
 				156BE30CB02F12D02E7BE15B /* Pods-Authentication-AuthenticationTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
