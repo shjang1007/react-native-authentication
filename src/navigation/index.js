@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Auth, Hub } from "aws-amplify";
+
+// import Context
+import { AuthContext } from "../contexts/AuthContext";
 
 // import Components
 import SignInScreen from "../screens/SignInScreen";
@@ -15,37 +18,9 @@ import HomeScreen from "../screens/HomeScreen";
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-    const [isSignedIn, setIsSignedIn] = useState(false);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        checkUserSignedIn();
-    }, [])
-    
-    useEffect(() => {
-        const listener = (data) => {
-            const event = data.payload.event;
-
-            if (event === "signIn" || event === "signOut") {
-                checkUserSignedIn();
-            }
-        }
-
-        Hub.listen("auth", listener);
-        return () => Hub.remove("auth", listener);
-    }, [])
-    const checkUserSignedIn = async () => {
-        try {
-            const authenticatedUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
-            setIsSignedIn(true)
-        } catch (e) {
-            setIsSignedIn(false);
-        }
-
-        setLoading(false);
-    }
-
-    if (loading) {
+    const { authLoading, currentUser } = useContext(AuthContext);
+        
+    if (authLoading) {
         return(
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
                 <ActivityIndicator/>
@@ -62,7 +37,7 @@ const Navigation = () => {
                 }} 
             >
                 {
-                    isSignedIn ? (
+                    currentUser ? (
                         <>
                             <Stack.Screen name="Home" component={HomeScreen} />
                         </>

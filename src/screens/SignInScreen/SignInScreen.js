@@ -1,8 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { View, StyleSheet, ScrollView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Auth } from "aws-amplify";
 import { useForm } from "react-hook-form";
+
+// import Context
+import { AuthContext } from "../../contexts/AuthContext";
 
 // import Components
 import Logo from "../../components/Logo"
@@ -11,6 +14,8 @@ import CustomButton from "../../components/CustomButton";
 import OAuthSignInButtons from "../../components/OAuthSignInButtons";
 
 const SignInScreen = () => {
+    const { setCurrentUser } = useContext(AuthContext);
+
     const [loading, setLoading] = useState(false);
 
     const { control, handleSubmit, formState: {errors} } = useForm();
@@ -29,6 +34,7 @@ const SignInScreen = () => {
 
         try {
             const response = await Auth.signIn(email, password);
+            setCurrentUser(response);
         } catch (e) {
             Alert.alert("Failed to Sign in", e.message)
         }

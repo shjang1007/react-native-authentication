@@ -17,6 +17,7 @@ import awsconfig from "./src/aws-exports";
 
 // import Components
 import Navigation from "./src/navigation";
+import { AuthProvider } from "./src/contexts/AuthContext";
 
 // configure AWS Amplify
 Amplify.configure(awsconfig);
@@ -24,7 +25,9 @@ Amplify.configure(awsconfig);
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Navigation/>
+      <AuthProvider>
+        <Navigation/>
+      </AuthProvider>
     </SafeAreaView>
   );
 };

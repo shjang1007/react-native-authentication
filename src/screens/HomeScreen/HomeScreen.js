@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
-import { Auth } from "aws-amplify";
+
+// import Context
+import { AuthContext } from "../../contexts/AuthContext/";
 
 const Home = () => {
+    const { handleSignOut } = useContext(AuthContext);
+
     return(
         <View style={ styles.container }>
             <Text style={ styles.title }>Open Runs</Text>
@@ -24,7 +28,7 @@ const Home = () => {
                     </View>
                 </View>
                 
-                <Pressable onPress={() => Auth.signOut()}>
+                <Pressable onPress={ handleSignOut }>
                     <Text>Sign Out</Text>    
                 </Pressable>
             </ScrollView>
