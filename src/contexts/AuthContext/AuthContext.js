@@ -8,7 +8,26 @@ export const AuthProvider = ({ children }) => {
     const [authLoading, setAuthLoading] = useState(true);
 
     useEffect(() => {
+        const listener = ({payload: {event, data}}) => {
+            switch (event) {
+                case "cognitoHostedUI":
+                case "signOut":
+                    checkUserSignIn();
+
+                    break;
+                case "signIn_failure":
+                case "cognitoHostedUI_failure":
+                    console.log("Sign in failed", data);
+                    break;
+            }
+        }
+
+        Hub.listen("auth", listener);
+
         checkUserSignIn();
+        
+        // useEffect expects functions to be returned to be executed on cleanup
+        return () => Hub.remove("auth", listener);
     }, [])
 
     const checkUserSignIn = async () => {
@@ -16,17 +35,17 @@ export const AuthProvider = ({ children }) => {
 
         try {
             const authenticatedUser = await Auth.currentAuthenticatedUser({bypassCache: true});
+
             setCurrentUser(authenticatedUser);
         } catch (e) {
             setCurrentUser(null);
         }      
         
-        setAuthLoading(false);
+        setAuthLoading(false);        
     }
 
     const handleSignOut = async () => {
         await Auth.signOut();
-        setCurrentUser(null);
     }
 
     const providerValues = {

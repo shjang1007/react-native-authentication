@@ -12,15 +12,24 @@ import {
   StyleSheet,
 } from "react-native";
 
-import Amplify, { Auth } from "aws-amplify";
+import Amplify from "aws-amplify";
 import awsconfig from "./src/aws-exports";
+
+// import urlOpner
+import { urlOpener } from "./src/utils/urlOpener";
 
 // import Components
 import Navigation from "./src/navigation";
 import { AuthProvider } from "./src/contexts/AuthContext";
 
 // configure AWS Amplify
-Amplify.configure(awsconfig);
+Amplify.configure({
+  ...awsconfig,
+  oauth: {
+    ...awsconfig.oauth,
+    urlOpener
+  }
+});
 
 const App = () => {
   return (

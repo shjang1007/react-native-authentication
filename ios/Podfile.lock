@@ -349,6 +349,8 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.16.1):
     - React-Core
+  - RNInAppBrowser (3.6.3):
+    - React-Core
   - RNScreens (3.12.0):
     - React-Core
     - React-RCTImage
@@ -416,6 +418,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNAWSCognito (from `../node_modules/amazon-cognito-identity-js`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -504,6 +507,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/amazon-cognito-identity-js"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNInAppBrowser:
+    :path: "../node_modules/react-native-inappbrowser-reborn"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -558,6 +563,7 @@ SPEC CHECKSUMS:
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   RNAWSCognito: 9c2cb4f8ad18a3bb891250018f14426daaeec812
   RNCAsyncStorage: b49b4e38a1548d03b74b30e558a1d18465b94be7
+  RNInAppBrowser: 3ff3a3b8f458aaf25aaee879d057352862edf357
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121

@@ -65,6 +65,12 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "hostedUI": false
+    "hostedUI": true,
+    "hostedUIDomainName": "j9pkm9rbogpz",
+    "authProvidersUserPool": [
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"given_name\":\"given_name\",\"family_name\":\"family_name\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"authentication://\"],\"LogoutURLs\":[\"authentication://\"]}"
   }
 }

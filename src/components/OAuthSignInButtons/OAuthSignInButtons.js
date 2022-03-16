@@ -1,11 +1,15 @@
 import React from "react";
+import { Auth } from "aws-amplify";
 
 // import Components
 import CustomButton from "../CustomButton";
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
 
 const OAuthSignInButtons = () => {
     const onSignInGooglePressed = () => {
-        console.warn("Sign In Google Button Pressed");
+        Auth.federatedSignIn({
+            provider: "Google"
+        })
     }
 
     const onSignInApplePressed = () => {
