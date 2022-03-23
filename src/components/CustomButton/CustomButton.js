@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, Pressable, Text } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faGoogle, faApple } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 
 const CustomButton = ({ onPress, text, type, icon, loading }) => {
     const icons = {
         mail: faEnvelope,
         google: faGoogle,
-        apple: faApple
+        facebook: faFacebook
     }
 
     return(

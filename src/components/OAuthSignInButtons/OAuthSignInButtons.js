@@ -19,18 +19,18 @@ const OAuthSignInButtons = () => {
     return(
         <>
             <CustomButton
-                text="Sign In with Google"
+                text="Continue with Google"
                 onPress={onSignInGooglePressed}
                 icon="google"
                 type="oAuth"
 
             />
-            <CustomButton
-                text="Continue with Apple"
+            {/* <CustomButton
+                text="Continue with Facebook"
                 onPress={onSignInApplePressed}
-                icon="apple"
+                icon="facebook"
                 type="oAuth"
-            />
+            /> */}
         </>
     )
 }
