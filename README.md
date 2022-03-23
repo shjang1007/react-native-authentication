@@ -18,9 +18,14 @@ On one terminal, run:
 npm start
 ```
 
-On the other terminal, run:
+On the other terminal, to run the ios simulator, run:
 ```bash
 npm run ios
+```
+
+To run the Android simulator, run:
+```bash
+npm run android
 ```
 
 ## Limitations of Amplify
