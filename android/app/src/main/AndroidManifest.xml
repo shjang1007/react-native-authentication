@@ -3,7 +3,6 @@
 
     <uses-permission 
       android:name="android.permission.INTERNET" 
-      andriod:launchMode="singleInstance"
     />
 
     <application
@@ -23,11 +22,11 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-        <intent-filter>
+        <intent-filter android:scheme="http">
             <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
-           <data andriod:scheme="authentication" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="authentication" />
         </intent-filter>
       </activity>
     </application>
