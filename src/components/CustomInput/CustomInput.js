@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Text } from "react-native";
+import { View, TextInput, StyleSheet, Text, Platform } from "react-native";
 import { Controller } from "react-hook-form";
 
 const CustomInput = ({name, control, rules={}, placeholderText, secureTextEntry}) => {
@@ -11,7 +11,7 @@ const CustomInput = ({name, control, rules={}, placeholderText, secureTextEntry}
             render={({field: {value, onChange, onBlur}, fieldState: {error}})=> {
                 return(
                     <>
-                        <View style={ styles.container }>
+                        <View style={[styles.container, Platform.OS === "android" && styles.containerAndroid]}>
                             <TextInput 
                                 value={value}
                                 onChangeText={onChange}                           
@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
         color: "red",
         fontWeight: "300",
         marginLeft: 5
+    },
+    containerAndroid: {
+        paddingVertical: 0
     }
 });
 
