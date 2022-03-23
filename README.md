@@ -30,3 +30,6 @@ npm run ios
 ## Roadmap
 - Test that the app looks good across different devices
 - Implement oAuth for Apple sign in
+
+## Deprecation Warning
+- EventEmitter.removeListner deprecated and subscription.remove() should be used, but React Native not updated to remove the warnings. Patch-Package may be the solution to change node_modules affected by this deprecation message, but leaving things as-is for now as it still works.
